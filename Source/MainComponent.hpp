@@ -15,7 +15,7 @@
 // EXTERNALS
 // ============================================================================
 #include <JuceHeader.h>
-#include "MidiInterface.hpp"
+#include "Midi.hpp"
 #include "Synth.hpp"
 #include "Keyboard.hpp"
 
@@ -37,7 +37,7 @@ class MainComponent : public juce::AudioAppComponent
     void resized() override;
 
   private:
-    MidiManager midiManager;
+    Midi midi;
     Synth synth;
     Keyboard keyboard;
 

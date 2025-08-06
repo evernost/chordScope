@@ -22,9 +22,9 @@
 
 
 // ----------------------------------------------------------------------------
-// METHOD Synth::prepare()
+// METHOD Synth::setSampleRate()
 // ----------------------------------------------------------------------------
-void Synth::prepare(double sampleRate)
+void Synth::setSampleRate(double sampleRate)
 {
   currentSampleRate = sampleRate;
 }

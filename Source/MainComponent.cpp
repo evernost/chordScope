@@ -13,36 +13,70 @@
 // ============================================================================
 // EXTERNALS
 // ============================================================================
-
-
 #include "MainComponent.hpp"
 
+
+
+// ----------------------------------------------------------------------------
+// CLASS CONSTRUCTOR
+// ----------------------------------------------------------------------------
 MainComponent::MainComponent()
 {
   addAndMakeVisible(keyboard);
   setSize(800, 600);
   setAudioChannels(0, 2); // No audio input, stereo output
 
-  midiManager.setCallback([this](int midiNoteNumber, float velocity) {
+  midi.setCallback([this](int midiNoteNumber, float velocity) {
     synth.setFrequency(juce::MidiMessage::getMidiNoteInHertz(midiNoteNumber));
     keyboard.setNotePlayed(midiNoteNumber);
   });
 }
 
-MainComponent::~MainComponent() { shutdownAudio(); }
 
-void MainComponent::prepareToPlay(int samplesPerBlockExpected, double sampleRate)
-{
-  synth.prepare(sampleRate);
+
+// ----------------------------------------------------------------------------
+// CLASS DESTRUCTOR
+// ----------------------------------------------------------------------------
+MainComponent::~MainComponent() 
+{ 
+  shutdownAudio();
 }
 
+
+
+// ----------------------------------------------------------------------------
+// METHOD MainComponent::prepareToPlay()                            [INHERITED]
+// ----------------------------------------------------------------------------
+void MainComponent::prepareToPlay(int samplesPerBlockExpected, double sampleRate)
+{
+  synth.setSampleRate(sampleRate);
+}
+
+
+
+// ----------------------------------------------------------------------------
+// METHOD MainComponent::getNextAudioBlock()                        [INHERITED]
+// ----------------------------------------------------------------------------
 void MainComponent::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill)
 {
   synth.renderNextBlock(*bufferToFill.buffer, bufferToFill.startSample, bufferToFill.numSamples);
 }
 
-void MainComponent::releaseResources() {}
 
+
+// ----------------------------------------------------------------------------
+// METHOD MainComponent::releaseResources()                         [INHERITED]
+// ----------------------------------------------------------------------------
+void MainComponent::releaseResources()
+{
+
+}
+
+
+
+// ----------------------------------------------------------------------------
+// METHOD MainComponent::resized()                                  [INHERITED]
+// ----------------------------------------------------------------------------
 void MainComponent::resized()
 {
   keyboard.setBounds(getLocalBounds());

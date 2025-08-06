@@ -22,11 +22,11 @@
 // ============================================================================
 // CLASS DEFINITION
 // ============================================================================
-class MidiManager : public juce::MidiInputCallback
+class Midi : public juce::MidiInputCallback
 {
   public:
-    MidiManager();
-    ~MidiManager();
+    Midi();
+    ~Midi();
 
     void handleIncomingMidiMessage(juce::MidiInput* source, const juce::MidiMessage& message) override;
     void setCallback(std::function<void(int note, float velocity)> cb);

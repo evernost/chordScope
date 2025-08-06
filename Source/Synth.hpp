@@ -24,10 +24,10 @@
 class Synth
 {
   public:
-    void prepare(double sampleRate);
+    void setFrequency(double frequency);  
+    void setSampleRate(double sampleRate);
     void renderNextBlock(juce::AudioBuffer<float>& buffer, int startSample, int numSamples);
-    void setFrequency(double frequency);
-
+  
   private:
     double currentAngle = 0.0;
     double angleDelta = 0.0;
