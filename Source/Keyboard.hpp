@@ -1,9 +1,9 @@
 // ============================================================================
 // Project        : chordScope
-// Module name    : MainComponent
-// File name      : MainComponent.hpp
+// Module name    : Synth
+// File name      : Synth.hpp
 // File type      : C++ 17
-// Purpose        : 
+// Purpose        : synthesizer class for sinewave generation
 // Author         : QuBi (nitrogenium@outlook.fr)
 // Creation date  : August 5th, 2025
 // ----------------------------------------------------------------------------
@@ -15,31 +15,21 @@
 // EXTERNALS
 // ============================================================================
 #include <JuceHeader.h>
-#include "MidiInterface.hpp"
-#include "Synth.hpp"
-#include "Keyboard.hpp"
 
 
 
 // ============================================================================
 // CLASS DEFINITION
 // ============================================================================
-class MainComponent : public juce::AudioAppComponent
+class Keyboard : public juce::Component
 {
   public:
-    MainComponent();
-    ~MainComponent() override;
-
-    void prepareToPlay(int samplesPerBlockExpected, double sampleRate) override;
-    void getNextAudioBlock(const juce::AudioSourceChannelInfo&) override;
-    void releaseResources() override;
-
-    void resized() override;
+    void paint(juce::Graphics& g) override;
+    void setNotePlayed(int midiNote);
 
   private:
-    MidiManager midiManager;
-    Synth synth;
-    Keyboard keyboard;
-
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainComponent)
+    int currentNote = -1;
 };
+
+// 'Keyboard' or 'IvoryLines'?
+

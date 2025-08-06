@@ -22,13 +22,13 @@ MidiManager::~MidiManager()
 
 void MidiManager::setCallback(std::function<void(int, float)> cb)
 {
-    noteOnCallback = cb;
+  noteOnCallback = cb;
 }
 
 void MidiManager::handleIncomingMidiMessage(juce::MidiInput*, const juce::MidiMessage& msg)
 {
-    if (msg.isNoteOn() && noteOnCallback)
-    {
-        noteOnCallback(msg.getNoteNumber(), msg.getVelocity());
-    }
+  if (msg.isNoteOn() && noteOnCallback)
+  {
+    noteOnCallback(msg.getNoteNumber(), msg.getVelocity());
+  }
 }

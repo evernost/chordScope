@@ -1,14 +1,31 @@
+// ============================================================================
+// Project        : chordScope
+// Module name    : MainComponent
+// File name      : MainComponent.cpp
+// File type      : C++ 17
+// Purpose        : 
+// Author         : QuBi (nitrogenium@outlook.fr)
+// Creation date  : August 5th, 2025
+// ----------------------------------------------------------------------------
+// Best viewed with space indentation (2 spaces)
+// ============================================================================
+
+// ============================================================================
+// EXTERNALS
+// ============================================================================
+
+
 #include "MainComponent.hpp"
 
 MainComponent::MainComponent()
 {
-  addAndMakeVisible(gui);
+  addAndMakeVisible(keyboard);
   setSize(800, 600);
   setAudioChannels(0, 2); // No audio input, stereo output
 
   midiManager.setCallback([this](int midiNoteNumber, float velocity) {
     synth.setFrequency(juce::MidiMessage::getMidiNoteInHertz(midiNoteNumber));
-    gui.setNotePlayed(midiNoteNumber); // pass note to GUI if needed
+    keyboard.setNotePlayed(midiNoteNumber);
   });
 }
 
@@ -28,5 +45,5 @@ void MainComponent::releaseResources() {}
 
 void MainComponent::resized()
 {
-  gui.setBounds(getLocalBounds());
+  keyboard.setBounds(getLocalBounds());
 }
