@@ -24,7 +24,7 @@ MainComponent::MainComponent()
 {
   addAndMakeVisible(keyboard);
   setSize(800, 600);
-  setAudioChannels(0, 2); // No audio input, stereo output
+  setAudioChannels(0, 2);
 
   midi.setCallback([this](int midiNoteNumber, float velocity) {
     synth.setFrequency(juce::MidiMessage::getMidiNoteInHertz(midiNoteNumber));
