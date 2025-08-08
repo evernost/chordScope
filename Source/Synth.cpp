@@ -54,7 +54,7 @@ void Synth::renderNextBlock(juce::AudioBuffer<float>& buffer, int startSample, i
     float sample = (float)std::sin(currentAngle);
     currentAngle += angleDelta;
 
-    left[startSample + i] = sample * 0.1f;
-    right[startSample + i] = sample * 0.1f;
+    left[startSample + i]   = sample * 0.1f;
+    right[startSample + i]  = sample * 0.1f;
   }
 }

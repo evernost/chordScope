@@ -30,6 +30,7 @@ class Midi : public juce::MidiInputCallback
 
     void handleIncomingMidiMessage(juce::MidiInput* source, const juce::MidiMessage& message) override;
     void setCallback(std::function<void(int note, float velocity)> cb);
+    juce::String deviceName;
 
   private:
     std::function<void(int, float)> noteOnCallback;

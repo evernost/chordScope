@@ -81,7 +81,8 @@ void Keyboard::paint(juce::Graphics& g)
     x += 0;           y += bnh-ns;    keyPolygon.lineTo(x, y);
     x += bnw-(2*ns);  y += 0;         keyPolygon.lineTo(x, y);
     x += 0;           y += -(bnh-ns); keyPolygon.lineTo(x, y);
-    g.setColour(juce::Colours::darkblue);
+    keyPolygon.closeSubPath();
+    g.setColour(juce::Colours::black);
     g.fillPath(keyPolygon);
     
 
@@ -91,23 +92,46 @@ void Keyboard::paint(juce::Graphics& g)
     // g.strokePath(keyPolygon, juce::PathStrokeType(2.0f));
 
 
-    // # Note D
-    // self.polygons[i+2] = [(x0+wnw+(bnw//3)+ns, y0)]
-    // self.polygons[i+2] += utils.Vector2D(0, bnh+ns)
-    // self.polygons[i+2] += utils.Vector2D(-bnw//3, 0)
-    // self.polygons[i+2] += utils.Vector2D(0, wnh-bnh-ns-nc)
-    // self.polygons[i+2] += utils.Vector2D(nc,nc)
-    // self.polygons[i+2] += utils.Vector2D(wnw-(2*nc)-(2*ns),0)
-    // self.polygons[i+2] += utils.Vector2D(nc,-nc)
-    // self.polygons[i+2] += utils.Vector2D(0,-(wnh-bnh-ns-nc))
-    // self.polygons[i+2] += utils.Vector2D(-bnw//3,0)
-    // self.polygons[i+2] += utils.Vector2D(0,-(bnh+ns))
+    // Note D
+    x = x0+wnw+(bnw/3)+ns; y = y0;
+    keyPolygon.startNewSubPath(x, y);
+    x += 0;                 y += bnh+ns;            keyPolygon.lineTo(x, y);
+    x += -bnw/3;            y += 0;                 keyPolygon.lineTo(x, y);
+    x += 0;                 y += wnh-bnh-ns-nc;     keyPolygon.lineTo(x, y);
+    x += nc;                y += nc;                keyPolygon.lineTo(x, y);
+    x += wnw-(2*nc)-(2*ns); y += 0;                 keyPolygon.lineTo(x, y);
+    x += nc;                y += -nc;               keyPolygon.lineTo(x, y);
+    x += 0;                 y += -(wnh-bnh-ns-nc);  keyPolygon.lineTo(x, y);
+    x += -bnw/3;            y += 0;                 keyPolygon.lineTo(x, y);
+    x += 0;                 y += -(bnh+ns);         keyPolygon.lineTo(x, y);
+    keyPolygon.closeSubPath();
+    g.setColour(juce::Colours::white);
+    g.fillPath(keyPolygon);
+    
+
+    // Note Eb
+    x = x0+(2*wnw)-(bnw/3)+ns; y = y0;
+    keyPolygon.startNewSubPath(x, y);
+    x += 0;           y += bnh-ns;    keyPolygon.lineTo(x, y);
+    x += bnw-(2*ns);  y += 0;         keyPolygon.lineTo(x, y);
+    x += 0;           y += -(bnh-ns); keyPolygon.lineTo(x, y);
+    keyPolygon.closeSubPath();
+    g.setColour(juce::Colours::white);
+    g.fillPath(keyPolygon);
+
 
     // # Note Eb
     // self.polygons[i+3] = [(x0+(2*wnw)-(bnw//3)+ns, y0)]
     // self.polygons[i+3] += utils.Vector2D(0,bnh-ns)
     // self.polygons[i+3] += utils.Vector2D(bnw-(2*ns),0)
     // self.polygons[i+3] += utils.Vector2D(0,-(bnh-ns))
+
+
+
+
+
+
+
 
     // # Note Eb
     // self.polygons[i+4] = [(x0+(2*wnw)+(2*bnw//3)+ns, y0)]

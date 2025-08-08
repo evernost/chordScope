@@ -27,6 +27,7 @@ Midi::Midi()
   {
     auto device = devices[0];
     midiInput = juce::MidiInput::openDevice(device.identifier, this);
+    deviceName = device.name;
     
     if (midiInput)
     {
