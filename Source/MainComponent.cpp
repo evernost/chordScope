@@ -23,7 +23,7 @@
 MainComponent::MainComponent()
 {
   addAndMakeVisible(keyboard);
-  setSize(800, 600);
+  setSize(1400, 500);
   setAudioChannels(0, 2);
 
   midi.setCallback([this](int midiNoteNumber, float velocity) {

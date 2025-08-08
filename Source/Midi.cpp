@@ -35,7 +35,7 @@ Midi::Midi()
   }
   else
   {
-    std::cout << "[WARNING] No MIDI interface was found.";
+    DBG("[WARNING] No MIDI interface was found.");
   }
 }
 
