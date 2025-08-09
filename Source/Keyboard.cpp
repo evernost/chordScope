@@ -92,8 +92,6 @@ void Keyboard::paint(juce::Graphics& g)
       g.fillPath(keyPolygon);
     }
 
-
-
     // Note D
     {
       x = x0+wnw+(bnw/3)+ns; y = y0;
@@ -113,7 +111,6 @@ void Keyboard::paint(juce::Graphics& g)
       g.fillPath(keyPolygon);
     }
     
-
     // Note Eb
     {
       x = x0+(2*wnw)-(bnw/3)+ns; y = y0;
@@ -126,15 +123,6 @@ void Keyboard::paint(juce::Graphics& g)
       g.setColour(BLACK_NOTE_COLOR);
       g.fillPath(keyPolygon);
     }
-    // # Note Eb
-    // self.polygons[i+3] = [(x0+(2*wnw)-(bnw//3)+ns, y0)]
-    // self.polygons[i+3] += utils.Vector2D(0,bnh-ns)
-    // self.polygons[i+3] += utils.Vector2D(bnw-(2*ns),0)
-    // self.polygons[i+3] += utils.Vector2D(0,-(bnh-ns))
-
-
-
-
 
     // Note E
     {
@@ -152,18 +140,6 @@ void Keyboard::paint(juce::Graphics& g)
       g.setColour(WHITE_NOTE_COLOR);
       g.fillPath(keyPolygon);
     }
-    // # Note E
-    // self.polygons[i+4] = [(x0+(2*wnw)+(2*bnw//3)+ns, y0)]
-    // self.polygons[i+4] += utils.Vector2D(0,bnh+ns)
-    // self.polygons[i+4] += utils.Vector2D(-2*bnw//3,0)
-    // self.polygons[i+4] += utils.Vector2D(0,wnh-bnh-ns-nc)
-    // self.polygons[i+4] += utils.Vector2D(nc,nc)
-    // self.polygons[i+4] += utils.Vector2D(wnw-(2*nc)-(2*ns),0)
-    // self.polygons[i+4] += utils.Vector2D(nc,-nc)
-    // self.polygons[i+4] += utils.Vector2D(0,-(wnh-nc))
-
-
-
 
     // Note F
     {
@@ -181,17 +157,6 @@ void Keyboard::paint(juce::Graphics& g)
       g.setColour(WHITE_NOTE_COLOR);
       g.fillPath(keyPolygon);
     }
-    // # Note F
-    // self.polygons[i+5] = [(x0+(3*wnw)+ns, y0)]
-    // self.polygons[i+5] += utils.Vector2D(0,wnh-nc)
-    // self.polygons[i+5] += utils.Vector2D(nc,nc)
-    // self.polygons[i+5] += utils.Vector2D(wnw-(2*nc)-(2*ns),0)
-    // self.polygons[i+5] += utils.Vector2D(nc,-nc)
-    // self.polygons[i+5] += utils.Vector2D(0,-(wnh-bnh-ns-nc))
-    // self.polygons[i+5] += utils.Vector2D(-2*bnw//3,0)
-    // self.polygons[i+5] += utils.Vector2D(0,-(bnh+ns))
-
-
 
     // Note Gb
     {
@@ -205,13 +170,6 @@ void Keyboard::paint(juce::Graphics& g)
       g.setColour(BLACK_NOTE_COLOR);
       g.fillPath(keyPolygon);
     }
-    // # Note Gb
-    // self.polygons[i+6] = [(x0+(4*wnw)-(2*bnw//3)+ns, y0)]
-    // self.polygons[i+6] += utils.Vector2D(0,bnh-ns)
-    // self.polygons[i+6] += utils.Vector2D(bnw-(2*ns),0)
-    // self.polygons[i+6] += utils.Vector2D(0,-(bnh-ns))
-
-
 
     // Note G
     {
@@ -231,20 +189,6 @@ void Keyboard::paint(juce::Graphics& g)
       g.setColour(WHITE_NOTE_COLOR);
       g.fillPath(keyPolygon);
     }
-    // # Note G
-    // self.polygons[i+7] = [(x0+(4*wnw)+(bnw//3)+ns, y0)]
-    // self.polygons[i+7] += utils.Vector2D(0,bnh+ns)
-    // self.polygons[i+7] += utils.Vector2D(-bnw//3,0)
-    // self.polygons[i+7] += utils.Vector2D(0,wnh-bnh-ns-nc)
-    // self.polygons[i+7] += utils.Vector2D(nc,nc)
-    // self.polygons[i+7] += utils.Vector2D(wnw-(2*nc)-(2*ns),0)
-    // self.polygons[i+7] += utils.Vector2D(nc,-nc)
-    // self.polygons[i+7] += utils.Vector2D(0,-(wnh-bnh-ns-nc))
-    // self.polygons[i+7] += utils.Vector2D(-bnw//2,0)
-    // self.polygons[i+7] += utils.Vector2D(0,-(bnh+ns))
-
-
-
 
     if ((i+8) < 127)
     {
@@ -260,13 +204,6 @@ void Keyboard::paint(juce::Graphics& g)
         g.setColour(BLACK_NOTE_COLOR);
         g.fillPath(keyPolygon);
       }
-      //   # Note Ab
-      //   self.polygons[i+8] = [(x0+(5*wnw)-(bnw//2)+ns, y0)]
-      //   self.polygons[i+8] += utils.Vector2D(0,bnh-ns)
-      //   self.polygons[i+8] += utils.Vector2D(bnw-(2*ns),0)
-      //   self.polygons[i+8] += utils.Vector2D(0,-(bnh-ns))
-
-
 
       // Lowest A
       if ((i+9) == 21)
@@ -284,16 +221,6 @@ void Keyboard::paint(juce::Graphics& g)
         keyPolygon.closeSubPath();
         g.setColour(WHITE_NOTE_COLOR);
         g.fillPath(keyPolygon);
-        //   # Note A
-        //   if (grandPianoMode and ((i+9) == 21)) :
-        //     self.polygons[i+9] = [(x0+(5*wnw)+ns, y0)]
-        //     self.polygons[i+9] += utils.Vector2D(0,wnh-nc)
-        //     self.polygons[i+9] += utils.Vector2D(nc,nc)
-        //     self.polygons[i+9] += utils.Vector2D(wnw-(2*nc)-(2*ns),0)
-        //     self.polygons[i+9] += utils.Vector2D(nc,-nc)
-        //     self.polygons[i+9] += utils.Vector2D(0,-(wnh-bnh-ns-nc))
-        //     self.polygons[i+9] += utils.Vector2D(-bnw//3,0)
-        //     self.polygons[i+9] += utils.Vector2D(0,-(bnh+ns))
       }
       
       // Regular A
@@ -314,21 +241,8 @@ void Keyboard::paint(juce::Graphics& g)
         keyPolygon.closeSubPath();
         g.setColour(WHITE_NOTE_COLOR);
         g.fillPath(keyPolygon);
-
-        //   else :
-        //     self.polygons[i+9] = [(x0+(5*wnw)+(bnw//2)+ns, y0)]
-        //     self.polygons[i+9] += utils.Vector2D(0, bnh+ns)
-        //     self.polygons[i+9] += utils.Vector2D(-bnw//2, 0)
-        //     self.polygons[i+9] += utils.Vector2D(0, wnh-bnh-ns-nc)
-        //     self.polygons[i+9] += utils.Vector2D(nc,nc)
-        //     self.polygons[i+9] += utils.Vector2D(wnw-(2*nc)-(2*ns), 0)
-        //     self.polygons[i+9] += utils.Vector2D(nc, -nc)
-        //     self.polygons[i+9] += utils.Vector2D(0, -(wnh-bnh-ns-nc))
-        //     self.polygons[i+9] += utils.Vector2D(-bnw//3, 0)
-        //     self.polygons[i+9] += utils.Vector2D(0,-(bnh+ns))
       }
       
-
       // Note Bb
       {
         x = x0+(6*wnw)-(bnw/3)+ns; y = y0;
@@ -341,11 +255,6 @@ void Keyboard::paint(juce::Graphics& g)
         g.setColour(BLACK_NOTE_COLOR);
         g.fillPath(keyPolygon);
       }
-      
-      //   self.polygons[i+10] = [(x0+(6*wnw)-(bnw//3)+ns, y0)]
-      //   self.polygons[i+10] += utils.Vector2D(0,bnh-ns)
-      //   self.polygons[i+10] += utils.Vector2D(bnw-(2*ns),0)
-      //   self.polygons[i+10] += utils.Vector2D(0,-(bnh-ns))
 
       // Note Bb
       {
@@ -363,28 +272,14 @@ void Keyboard::paint(juce::Graphics& g)
         g.setColour(WHITE_NOTE_COLOR);
         g.fillPath(keyPolygon);
       }
-      //   # Note B
-      //   self.polygons[i+11] = [(x0+(6*wnw)+(2*bnw//3)+ns, y0)]
-      //   self.polygons[i+11] += utils.Vector2D(0,bnh+ns)
-      //   self.polygons[i+11] += utils.Vector2D(-2*bnw//3,0)
-      //   self.polygons[i+11] += utils.Vector2D(0,wnh-bnh-ns-nc)
-      //   self.polygons[i+11] += utils.Vector2D(nc,nc)
-      //   self.polygons[i+11] += utils.Vector2D(wnw-(2*nc)-(2*ns),0)
-      //   self.polygons[i+11] += utils.Vector2D(nc,-nc)
-      //   self.polygons[i+11] += utils.Vector2D(0,-(wnh-nc))
     }
     x0 += 7*wnw;
-
- 
   }
-
-
-
 
 
   g.setFont(15.0f);
   g.setColour(juce::Colours::white);
-  g.drawText("MIDI interface: ", 10, 50, 200, 30, juce::Justification::left, true);
+  g.drawText("MIDI interface: " + deviceName, 10, 50, 200, 30, juce::Justification::left, true);
 
 
 
@@ -406,4 +301,14 @@ void Keyboard::setNotePlayed(int midiNote)
 {
   currentNote = midiNote;
   repaint();
+}
+
+
+
+// ----------------------------------------------------------------------------
+// METHOD Keyboard::setMidiDeviceName()
+// ----------------------------------------------------------------------------
+void Keyboard::setMidiDeviceName(juce::String dev)
+{
+  deviceName = dev;
 }

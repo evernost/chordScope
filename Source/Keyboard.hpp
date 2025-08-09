@@ -38,9 +38,11 @@ class Keyboard : public juce::Component
   public:
     void paint(juce::Graphics& g) override;
     void setNotePlayed(int midiNote);
+    void setMidiDeviceName(juce::String dev);
 
   private:
     int currentNote = -1;
+    juce::String deviceName;
 };
 
 // 'Keyboard' or 'IvoryLines'?

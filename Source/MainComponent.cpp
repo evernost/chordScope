@@ -26,6 +26,8 @@ MainComponent::MainComponent()
   setSize(1400, 500);
   setAudioChannels(0, 2);
 
+  keyboard.setMidiDeviceName(midi.deviceName);
+
   midi.setCallback([this](int midiNoteNumber, float velocity) {
     synth.setFrequency(juce::MidiMessage::getMidiNoteInHertz(midiNoteNumber));
     keyboard.setNotePlayed(midiNoteNumber);
