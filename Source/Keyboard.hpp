@@ -29,6 +29,10 @@
 #define KEYBOARD_NOTE_SPACING 1
 
 
+#define WHITE_NOTE_COLOR (juce::Colours::white)
+#define BLACK_NOTE_COLOR (juce::Colours::darkblue)
+
+
 
 // ============================================================================
 // CLASS DEFINITION
@@ -37,10 +41,12 @@ class Keyboard : public juce::Component
 {
   public:
     void paint(juce::Graphics& g) override;
-    void setNotePlayed(int midiNote);
-    void setMidiDeviceName(juce::String dev);
+    void setNotePlayed(int);
+    void setMidiDeviceName(juce::String);
 
   private:
+    void _renderNotes(juce::Graphics&);
+    void _renderInput(juce::Graphics&);
     int currentNote = -1;
     juce::String deviceName;
 };

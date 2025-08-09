@@ -18,13 +18,41 @@
 
 
 // ----------------------------------------------------------------------------
-// METHOD Keyboard::paint()
+// METHOD Keyboard::paint()                                         [INHERITED]
 // ----------------------------------------------------------------------------
 void Keyboard::paint(juce::Graphics& g)
 {
-  juce::Colour WHITE_NOTE_COLOR = juce::Colours::white;
-  juce::Colour BLACK_NOTE_COLOR = juce::Colours::darkblue;
-  
+  // Render background
+  g.fillAll(juce::Colours::black);
+
+  // Render the keyboard
+  _renderNotes(g);
+
+  // Render the notes from the MIDI input
+  // Optionally react to MIDI note
+  _renderInput(g);
+   
+  if (currentNote != -1)
+  {
+    g.setColour(juce::Colours::red);
+    float z = (float)((currentNote * 10) % getWidth());
+    g.drawLine(z, 0, z, (float)getHeight(), 1.5f);
+  }
+
+  // Display the MIDI interface
+  g.setFont(15.0f);
+  g.setColour(juce::Colours::white);
+  g.drawText("MIDI interface: " + deviceName, 10, 50, 200, 30, juce::Justification::left, true);
+
+}
+
+
+
+// ----------------------------------------------------------------------------
+// METHOD Keyboard::_renderNotes()                                    [PRIVATE]
+// ----------------------------------------------------------------------------
+void Keyboard::_renderNotes(juce::Graphics& g)
+{
   float x0 = 10;
   float y0 = 300;
 
@@ -38,9 +66,6 @@ void Keyboard::paint(juce::Graphics& g)
   float bnw = KEYBOARD_BLACK_NOTE_WIDTH;
   float nc = KEYBOARD_NOTE_CHANFER;
   float ns = KEYBOARD_NOTE_SPACING;
-
-
-  g.fillAll(juce::Colours::black);
   
   for(uint32_t i = 0; i < 128; i++)
   {
@@ -275,20 +300,20 @@ void Keyboard::paint(juce::Graphics& g)
     }
     x0 += 7*wnw;
   }
-
-
-  g.setFont(15.0f);
-  g.setColour(juce::Colours::white);
-  g.drawText("MIDI interface: " + deviceName, 10, 50, 200, 30, juce::Justification::left, true);
+}
 
 
 
-  // Optionally react to MIDI note
+// ----------------------------------------------------------------------------
+// METHOD Keyboard::_renderInput()                                    [PRIVATE]
+// ----------------------------------------------------------------------------
+void Keyboard::_renderInput(juce::Graphics& g)
+{
   if (currentNote != -1)
   {
     g.setColour(juce::Colours::red);
-    float z = (float)((currentNote * 10) % getWidth());
-    g.drawLine(z, 0, z, (float)getHeight(), 1.5f);
+    float x = (float)((currentNote * 10) % getWidth());
+    g.drawLine(x, 100, x, (float)getHeight(), 1.5f);
   }
 }
 

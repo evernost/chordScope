@@ -3,7 +3,7 @@
 // Module name    : Main
 // File name      : Main.cpp
 // File type      : C++ 17
-// Purpose        : 
+// Purpose        : application entry point
 // Author         : QuBi (nitrogenium@outlook.fr)
 // Creation date  : August 6th, 2025
 // ----------------------------------------------------------------------------
@@ -18,7 +18,7 @@
 
 
 // ----------------------------------------------------------------------------
-// CLASS CONSTRUCTOR
+// CLASS DEFINITION
 // ----------------------------------------------------------------------------
 class ChordScope : public juce::JUCEApplication
 {

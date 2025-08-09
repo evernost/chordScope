@@ -3,7 +3,7 @@
 // Module name    : MainComponent
 // File name      : MainComponent.cpp
 // File type      : C++ 17
-// Purpose        : 
+// Purpose        : app class definition
 // Author         : QuBi (nitrogenium@outlook.fr)
 // Creation date  : August 5th, 2025
 // ----------------------------------------------------------------------------
