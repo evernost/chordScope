@@ -28,9 +28,25 @@
 #define KEYBOARD_NOTE_CHANFER 2
 #define KEYBOARD_NOTE_SPACING 1
 
-
 #define WHITE_NOTE_COLOR (juce::Colours::white)
 #define BLACK_NOTE_COLOR (juce::Colours::darkblue)
+
+#define NOTE_C_MOD12 0
+#define NOTE_Db_MOD12 1
+#define NOTE_D_MOD12 2
+#define NOTE_Eb_MOD12 3
+#define NOTE_E_MOD12 4
+#define NOTE_F_MOD12 5
+#define NOTE_Gb_MOD12 6
+#define NOTE_G_MOD12 7
+#define NOTE_Ab_MOD12 8
+#define NOTE_A_MOD12 9
+#define NOTE_Bb_MOD12 10
+#define NOTE_B_MOD12 11
+
+#define NOTE_LOWEST_A 21
+#define NOTE_LOWEST_Bb 22
+#define NOTE_LOWEST_B 23
 
 
 
@@ -47,8 +63,8 @@ class Keyboard : public juce::Component
   private:
     void _renderNotes(juce::Graphics&);
     void _renderInput(juce::Graphics&);
-    int currentNote = -1;
-    juce::String deviceName;
+    int midiCurrentNote = -1;
+    juce::String midiDeviceName;
 };
 
 // 'Keyboard' or 'IvoryLines'?

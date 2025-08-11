@@ -27,6 +27,7 @@ class Synth
     void setFrequency(double frequency);  
     void setSampleRate(double sampleRate);
     void renderNextBlock(juce::AudioBuffer<float>& buffer, int startSample, int numSamples);
+    double volume;
   
   private:
     double currentAngle = 0.0;
