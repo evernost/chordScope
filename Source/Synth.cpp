@@ -22,11 +22,27 @@
 
 
 // ----------------------------------------------------------------------------
+// CLASS CONSTRUCTOR
+// ----------------------------------------------------------------------------
+Synth::Synth()
+{
+  std::memcpy(ratios, OVERTONE_PRESET_BELL, sizeof(ratios));
+  amplitude[0] = 0.2;
+  amplitude[1] = 0.1;
+  amplitude[2] = 0.1;
+  amplitude[3] = 0.1;
+  amplitude[4] = 0.1;
+  frequency = 440.0;
+}
+
+
+
+// ----------------------------------------------------------------------------
 // METHOD Synth::setSampleRate()
 // ----------------------------------------------------------------------------
-void Synth::setSampleRate(double sampleRate)
+void Synth::setSampleRate(double newSampleRate)
 {
-  currentSampleRate = sampleRate;
+  sampleRate = newSampleRate;
 }
 
 
@@ -34,9 +50,11 @@ void Synth::setSampleRate(double sampleRate)
 // ----------------------------------------------------------------------------
 // METHOD Synth::setFrequency()
 // ----------------------------------------------------------------------------
-void Synth::setFrequency(double frequency)
+void Synth::setFrequency(double f)
 {
-  angleDelta = juce::MathConstants<double>::twoPi * frequency / currentSampleRate;
+  frequency = f;
+  // deltaPhase0 = juce::MathConstants<double>::twoPi * frequency / currentSampleRate;
+  // deltaPhase1 = juce::MathConstants<double>::twoPi * 2.0 * frequency / currentSampleRate;
 }
 
 
@@ -44,17 +62,35 @@ void Synth::setFrequency(double frequency)
 // ----------------------------------------------------------------------------
 // METHOD Synth::renderNextBlock()
 // ----------------------------------------------------------------------------
-void Synth::renderNextBlock(juce::AudioBuffer<float>& buffer, int startSample, int numSamples)
+void Synth::renderNextBlock(juce::AudioBuffer<float>& buffer, int startSample, int nSamples)
 {
   auto* left  = buffer.getWritePointer(0);
   auto* right = buffer.getWritePointer(1);
 
-  for (int i = 0; i < numSamples; ++i)
-  {
-    float sample = (float)std::sin(currentAngle);
-    currentAngle += angleDelta;
+  
 
-    left[startSample + i]   = sample * 0.1f;
-    right[startSample + i]  = sample * 0.1f;
+  //vca.getState()
+
+  // Loop on the samples 
+  for (int i = 0; i < nSamples; ++i)
+  {    
+    left[startSample+i]   = 0.0;
+    right[startSample+i]  = 0.0;
+    
+    // Loop on the overtones
+    for (int n = 0; n < N_OVERTONES; n++)
+    {
+      float sampleLeft  = (float)(amplitude[n]*std::sin(phase[n]));
+      float sampleRight = (float)(amplitude[n]*std::sin(phase[n]));
+      
+      left[startSample + i]   += sampleLeft;
+      right[startSample + i]  += sampleRight;
+
+      // Increment the phase of this overtone
+      phase[n] += juce::MathConstants<double>::twoPi*frequency*ratios[n]/sampleRate;
+      if (phase[n] > juce::MathConstants<double>::twoPi)
+        phase[n] -= juce::MathConstants<double>::twoPi;
+    }
+    
   }
 }
