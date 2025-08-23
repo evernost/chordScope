@@ -36,6 +36,11 @@ void Keyboard::paint(juce::Graphics& g)
   g.setFont(15.0f);
   g.setColour(juce::Colours::white);
   g.drawText("MIDI interface: <" + midiDeviceName + ">", 10, 50, 200, 30, juce::Justification::left, true);
+  
+  // Display the MIDI controller values
+  g.setFont(15.0f);
+  g.setColour(juce::Colours::white);
+  g.drawText(controllerStr, 10, 100, 200, 30, juce::Justification::left, true);
 }
 
 
@@ -360,4 +365,14 @@ void Keyboard::setNotePlayed(int midiNote)
 void Keyboard::setMidiDeviceName(juce::String deviceName)
 {
   midiDeviceName = deviceName;
+}
+
+
+// ----------------------------------------------------------------------------
+// METHOD Keyboard::setControllerStr()
+// ----------------------------------------------------------------------------
+void Keyboard::setControllerStr(int controllerNumber, int controllerValue)
+{
+  controllerStr = "CC " + juce::String(controllerNumber) + " : " + juce::String(controllerValue);
+  repaint();
 }

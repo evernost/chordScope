@@ -28,10 +28,21 @@ MainComponent::MainComponent()
 
   keyboard.setMidiDeviceName(midi.deviceName);
 
-  midi.setCallback([this](int midiNoteNumber, float velocity) {
-    synth.setFrequency(juce::MidiMessage::getMidiNoteInHertz(midiNoteNumber));
-    keyboard.setNotePlayed(midiNoteNumber);
-  });
+  midi.setCallbacks(
+    
+    // clbk_noteEvent
+    [this](int midiNoteNumber, float velocity)
+    {
+      synth.setFrequency(juce::MidiMessage::getMidiNoteInHertz(midiNoteNumber));
+      keyboard.setNotePlayed(midiNoteNumber);
+    },
+
+    // clbk_ctrlEvent
+    [this](int controllerNumber, int controllerValue)
+    {
+      keyboard.setControllerStr(controllerNumber, controllerValue);
+    }
+  );
 }
 
 

@@ -91,6 +91,5 @@ void Synth::renderNextBlock(juce::AudioBuffer<float>& buffer, int startSample, i
       if (phase[n] > juce::MathConstants<double>::twoPi)
         phase[n] -= juce::MathConstants<double>::twoPi;
     }
-    
   }
 }

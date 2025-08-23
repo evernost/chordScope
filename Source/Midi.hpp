@@ -29,11 +29,12 @@ class Midi : public juce::MidiInputCallback
     ~Midi();
 
     void handleIncomingMidiMessage(juce::MidiInput* source, const juce::MidiMessage& message) override;
-    void setCallback(std::function<void(int note, float velocity)> cb);
+    void setCallbacks(std::function<void(int, float)>, std::function<void(int, int)>);
     juce::String deviceName;
 
   private:
-    std::function<void(int, float)> noteOnCallback;
+    std::function<void(int, float)> clbk_noteEvent;
+    std::function<void(int, int)> clbk_ctrlEvent;
     std::unique_ptr<juce::MidiInput> midiInput;
 };
 

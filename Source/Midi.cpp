@@ -56,11 +56,12 @@ Midi::~Midi()
 
 
 // ----------------------------------------------------------------------------
-// METHOD Midi::setCallback()
+// METHOD Midi::setCallbacks()
 // ----------------------------------------------------------------------------
-void Midi::setCallback(std::function<void(int, float)> cb)
+void Midi::setCallbacks(std::function<void(int, float)> noteEvent, std::function<void(int, int)> ctrlEvent)
 {
-  noteOnCallback = cb;
+  clbk_noteEvent = noteEvent;
+  clbk_ctrlEvent = ctrlEvent;
 }
 
 
@@ -70,8 +71,23 @@ void Midi::setCallback(std::function<void(int, float)> cb)
 // ----------------------------------------------------------------------------
 void Midi::handleIncomingMidiMessage(juce::MidiInput*, const juce::MidiMessage& msg)
 {
-  if (msg.isNoteOn() && noteOnCallback)
+  if (msg.isNoteOn() && clbk_noteEvent)
   {
-    noteOnCallback(msg.getNoteNumber(), msg.getVelocity());
+    clbk_noteEvent(msg.getNoteNumber(), msg.getVelocity());
+  }
+
+  if (msg.isNoteOff() && clbk_noteEvent)
+  {
+    clbk_noteEvent(msg.getNoteNumber(), 0);
+  }
+
+  if (msg.isController() && clbk_ctrlEvent)
+  {
+    clbk_ctrlEvent(msg.getControllerNumber(), msg.getControllerValue());
+  }
+
+  if (msg.isPitchWheel() && clbk_ctrlEvent)
+  {
+    //clbk_ctrlEvent(getPitchWheelValue());
   }
 }
